@@ -1,0 +1,36 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+    <% if session["name"].blank? %>
+        <div><%= f.label "Name" %>
+          <br/>
+          <%= f.text_field :name %></div>
+    <% else %>
+        <div><%= f.label :name %>
+          <br/>
+          <%= f.text_field :name, :value => session["name"] %></div>
+    <% end %>
+
+    <div><%= f.label :email %>
+      <br/>
+      <%= f.email_field :email %></div>
+
+    <div><%= f.label :password %>
+      <br/>
+      <%= f.password_field :password %></div>
+
+    <div><%= f.label :password_confirmation %>
+      <br/>
+      <%= f.password_field :password_confirmation %></div>
+
+
+    <%= f.hidden_field :uid, :value => session["uid"] unless  session["uid"].blank? %>
+    <%= f.hidden_field :provider, :value => session["provider"] unless  session["provider"].blank? %>
+
+
+
+    <div><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%#= render "links" %>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Qitch</title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% unless notice.blank? %>
+    <div class="notice" style="background-color: #7fffd4;"><%= notice %></div>
+<% end %>
+<% unless alert.blank? %>
+    <div class="alert" style="background-color: #ffe4c4;"><%= alert %></div>
+<% end %>
+<div class="login" style="float: right;background: aqua;margin-right: 80px;">
+  <% if user_signed_in? %>
+      Welcome <%= @user.email %>|<%= link_to "Logout", "/sign_out" %>
+  <% else %>
+      <div class="dummy" style="margin-top: 10px;"></div>
+      <%= link_to "Sign in with Linkedin", user_omniauth_authorize_path(:linkedin) %>
+  <% end %>
+</div>
+<%= yield %>
+
+</body>
+</html>
